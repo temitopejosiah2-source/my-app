@@ -8,16 +8,22 @@ const queryClient = new QueryClient()
 
 function Inner() {
   const { ready, authenticated, login, logout } = usePrivy()
-  if (!ready) return <p>Loading Privy...</p>
+  if (!ready) return <p className="muted">Loading Privy...</p>
   return (
-    <div>
-      {authenticated ? (
-        <button onClick={logout}>Log out</button>
-      ) : (
-        <button onClick={login}>Connect with Privy</button>
-      )}
+    <>
+      <section className="card connect-card">
+        <div>
+          <h2 className="card-title">Wallet</h2>
+          <p className="muted">{authenticated ? 'Connected with Privy' : 'Connect to get started'}</p>
+        </div>
+        {authenticated ? (
+          <button className="btn btn-secondary" onClick={logout}>Log out</button>
+        ) : (
+          <button className="btn btn-primary" onClick={login}>Connect with Privy</button>
+        )}
+      </section>
       {authenticated && <Interactions />}
-    </div>
+    </>
   )
 }
 

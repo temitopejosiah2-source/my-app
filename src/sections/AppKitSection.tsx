@@ -8,10 +8,16 @@ const queryClient = new QueryClient()
 function Inner() {
   const { isConnected } = useAccount()
   return (
-    <div>
-      <appkit-button />
+    <>
+      <section className="card connect-card">
+        <div>
+          <h2 className="card-title">Wallet</h2>
+          <p className="muted">{isConnected ? 'Connected with AppKit' : 'Connect to get started'}</p>
+        </div>
+        <appkit-button />
+      </section>
       {isConnected && <Interactions />}
-    </div>
+    </>
   )
 }
 
